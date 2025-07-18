@@ -1,0 +1,43 @@
+{
+    "env": {
+        "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
+        "OTEL_METRICS_EXPORTER": "otlp"
+    },
+    "permissions": {
+        "allow": [
+            "Bash(cargo fmt)",
+            "Bash(cargo test)",
+            "Bash(mix test)",
+            "Bash(npm run lint)",
+            "Bash(npm run test:*)",
+            "Bash(node test)",
+            "Bash(python test)",
+            "Bash(rails test)",
+            "Zsh(cargo fmt)",
+            "Zsh(cargo test)",
+            "Zsh(mix test)",
+            "Zsh(npm run lint)",
+            "Zsh(npm run test:*)",
+            "Zsh(node test)",
+            "Zsh(python test)",
+            "Zsh(rails test)"
+        ],
+        "deny": [
+            "Bash(curl:*)",
+            "Bash(wget:*)",
+            "Zsh(curl:*)",
+            "Zsh(wget:*)",
+            "Read(~/.bashrc)",
+            "Read(~/.zshrc)",
+            "Read(.env)",
+            "Read(**/.env*)",
+            "Read(**/env*)",
+            "Read(**/*.pem)",
+            "Read(**/*.key)",
+            "Read(**/*.crt)",
+            "Read(**/*.cert)",
+            "Read(**/secrets/**)",
+            "Read(**/credentials/**)"
+        ]
+    }
+}

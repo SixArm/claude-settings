@@ -1,35 +1,54 @@
 {
+    // Enable OpenTelemetry with metrics exporter
     "env": {
         "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
-        "OTEL_METRICS_EXPORTER": "otlp"
+        "OTEL_METRICS_EXPORTER": "otlp",
+
     },
     "permissions": {
         "allow": [
 
+            // Allow various source code tools for formatting, linting, testing.
+            // - cargo for Rust
+            // - mix for Elixir Phoenix
+            // - npm for Node Package Manager
+            // - python versions
+            // - rails for Ruby on Rails
+
+            // cargo
             "Bash(cargo fmt)",
             "Bash(cargo test)",
             "Zsh(cargo fmt)",
             "Zsh(cargo test)",
 
+            // mix
             "Bash(mix test)",
             "Zsh(mix test)",
 
+            // npm
             "Bash(npm run lint)",
             "Bash(npm run test:*)",
             "Zsh(npm run lint)",
             "Zsh(npm run test:*)",
 
+            // python
             "Bash(python test)",
             "Bash(python3 test)",
             "Zsh(python test)",
             "Zsh(python3 test)",
 
+            // rails
             "Bash(rails test)",
-            "Zsh(rails test)"
+            "Zsh(rails test)",
 
         ],
         "deny": [
 
+            // Deny run of various ways of fetching arbitrary URLs.
+            // - curl
+            // - wget
+            // - elinks
+            // - lynx
             "Bash(curl:*)",
             "Bash(wget:*)",
             "Bash(elinks:*)",
@@ -39,13 +58,17 @@
             "Zsh(elinks:*)",
             "Zsh(lynx:*)",
 
+            // Deny read of various configuration resource files.
             "Read(**/.bashrc)",
             "Read(**/.zshrc)",
 
+            // Deny read of environment settings files:
+            // - pretty much anything that uses `env`
             "Read(.env)",
             "Read(**/.env*)",
             "Read(**/env*)",
 
+            // Deny read of files that have encryption-related extensions.
             "Read(**/*.aes)",
             "Read(**/*.age)",
             "Read(**/*.argon2)",
@@ -54,15 +77,17 @@
             "Read(**/*.pgp)",
             "Read(**/*.scrypt)",
 
+            // Deny read of files that have certificate-related extensions.
             "Read(**/*.cert)",
             "Read(**/*.crt)",
             "Read(**/*.key)",
             "Read(**/*.pem)",
 
+            // Deny read of directories that have confidential-related names.
             "Read(**/secret/**)",
             "Read(**/secrets/**)",
             "Read(**/credential/**)",
-            "Read(**/credentials/**)"
+            "Read(**/credentials/**)",
 
         ]
     }

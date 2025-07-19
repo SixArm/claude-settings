@@ -1,6 +1,6 @@
 # Claude settings
 
-This repository contains Anthropic Claude settings as JSON files.
+This repository contains Anthropic Claude settings as a JSON file and JSON5 file with comments.
 
 ## Setup
 
